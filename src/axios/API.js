@@ -1,7 +1,7 @@
 import Auth from "../modules/Auth";
 import axios from "axios";
 //const URL = "http://192.168.0.19:3000";
-const URL = "http://192.168.1.169:5000/";
+const URL = "https://fshion-app.herokuapp.com/";
 
 const API = (config) => {
   //header authorization
