@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/fshion-shop/static/css/main.56553e44.css",
-    "main.js": "/fshion-shop/static/js/main.439e5d75.js",
+    "main.js": "/fshion-shop/static/js/main.541db2fe.js",
     "static/js/787.33bfcacb.chunk.js": "/fshion-shop/static/js/787.33bfcacb.chunk.js",
     "static/media/deal_ofthe_week.png": "/fshion-shop/static/media/deal_ofthe_week.003082c8a154550d8d59.png",
     "static/media/slider_3.jpg": "/fshion-shop/static/media/slider_3.6b16d5232bff4d0f6d17.jpg",
@@ -14,11 +14,11 @@
     "static/media/emptyCart.png": "/fshion-shop/static/media/emptyCart.b5fe7e5c334490fa84e5.png",
     "index.html": "/fshion-shop/index.html",
     "main.56553e44.css.map": "/fshion-shop/static/css/main.56553e44.css.map",
-    "main.439e5d75.js.map": "/fshion-shop/static/js/main.439e5d75.js.map",
+    "main.541db2fe.js.map": "/fshion-shop/static/js/main.541db2fe.js.map",
     "787.33bfcacb.chunk.js.map": "/fshion-shop/static/js/787.33bfcacb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.56553e44.css",
-    "static/js/main.439e5d75.js"
+    "static/js/main.541db2fe.js"
   ]
 }
