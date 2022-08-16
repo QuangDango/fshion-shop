@@ -19,7 +19,7 @@ var routes = [
   {
     path: "/home",
     layout: BaseLayout,
-    component: () => <Redirect to="/" />,
+    component: () => <Redirect to="/fshion-shop" />,
   },
   {
     path: "/single-product/:id",
