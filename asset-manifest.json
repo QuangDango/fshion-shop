@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/fshion-shop/static/css/main.56553e44.css",
+    "main.js": "/fshion-shop/static/js/main.270c0f15.js",
+    "static/js/787.33bfcacb.chunk.js": "/fshion-shop/static/js/787.33bfcacb.chunk.js",
+    "static/media/deal_ofthe_week.png": "/fshion-shop/static/media/deal_ofthe_week.003082c8a154550d8d59.png",
+    "static/media/slider_3.jpg": "/fshion-shop/static/media/slider_3.6b16d5232bff4d0f6d17.jpg",
+    "static/media/slider_1.jpg": "/fshion-shop/static/media/slider_1.6c1f29dae1414904577f.jpg",
+    "static/media/empty_cart.png": "/fshion-shop/static/media/empty_cart.b2ff8916bf73b6cf29c3.png",
+    "static/media/slider_2.jpg": "/fshion-shop/static/media/slider_2.07abb2f54c300d6dcdcf.jpg",
+    "static/media/banner_1.jpg": "/fshion-shop/static/media/banner_1.384a748b39bc8c458b50.jpg",
+    "static/media/banner_2.jpg": "/fshion-shop/static/media/banner_2.4d842bd2b1e615667b30.jpg",
+    "static/media/banner_3.jpg": "/fshion-shop/static/media/banner_3.f4890a3f9fe3a094dd97.jpg",
+    "static/media/emptyCart.png": "/fshion-shop/static/media/emptyCart.b5fe7e5c334490fa84e5.png",
+    "index.html": "/fshion-shop/index.html",
+    "main.56553e44.css.map": "/fshion-shop/static/css/main.56553e44.css.map",
+    "main.270c0f15.js.map": "/fshion-shop/static/js/main.270c0f15.js.map",
+    "787.33bfcacb.chunk.js.map": "/fshion-shop/static/js/787.33bfcacb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.56553e44.css",
+    "static/js/main.270c0f15.js"
+  ]
+}
