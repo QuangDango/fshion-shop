@@ -10,8 +10,6 @@ import HomeRoutes from "./HomeRoutes";
 
 function Routes() {
 
-    console.log("router dom")
-
     return (
         <>
             <Router ref={registerNav}>

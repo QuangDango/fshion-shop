@@ -27,7 +27,7 @@ function LoginForm(props) {
         props
             .userLogin(email, password)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 setLoading(false);
                 window.location.reload();
             })
@@ -93,7 +93,10 @@ function LoginForm(props) {
                         cursor: "pointer"
                     }}
                 >
-                    New user ? Please Register
+                    New user ? Please
+                    <span className='login-text'>
+                        register.
+                    </span>
                 </div>
             </div>
         </>

@@ -6,7 +6,6 @@ import "aos/dist/aos.css";
 import Routes from "./routes";
 
 function App() {
-  console.log("APPPPPPPPPPPPP")
   useEffect(() => {
     AOS.init();
   }, []);

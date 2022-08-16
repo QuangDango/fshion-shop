@@ -9,8 +9,6 @@ function BaseLayout(props) {
 
     const [isTop, setIsTop] = useState(true);
 
-    console.log("BAse Layout")
-
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY >= 50) {

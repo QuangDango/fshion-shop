@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import LoginRegisterForm from "../../components/LoginRegisterForm";
 import Auth from "../../modules/Auth";
 
 function SingleProduct(props) {
 
-    const [isAddCart, setIsAddCart] = useState(false);
+    const [count, setCount] = useState(1);
 
-    useEffect(() => {
-        window.scrollTo({ top: 0 });
-    },[])
-
+    const [isLoad, setIsLoad] = useState(false);
 
     const [state, setState] = useState(
         {
@@ -21,6 +20,7 @@ function SingleProduct(props) {
             id: "",
             quantity: 1,
         });
+
     const [isModalShow, setIsModalShow] = useState(false);
     const [isLoginForm, setIsLoginForm] = useState(true);
 
@@ -28,6 +28,7 @@ function SingleProduct(props) {
         props.getProduct(props.location.pathname.split("/").slice(-1)[0]);
         props.getVariantsByProductId(
             props.location.pathname.split("/").slice(-1)[0]);
+        window.scrollTo({ top: 0 });
     }, []);
 
     const loginClicked = () => {
@@ -56,27 +57,7 @@ function SingleProduct(props) {
         });
     };
 
-    const onAddClicked = () => {
-        setState({ ...state, quantity: state.quantity + 1 });
-        props.postCart(
-            state.id || props.location.pathname.split("/").slice(-1)[0],
-            true,
-            false
-        );
-    };
-    const onRemoveClicked = () => {
-        props.postCart(
-            state.id || props.location.pathname.split("/").slice(-1)[0],
-            false,
-            true
-        );
-
-        if (state.quantity > 1) {
-            setState({ ...state, quantity: state.quantity - 1 });
-        }
-    };
-
-    const addToBag = () => {
+    async function addToBag() {
         if (
             Auth.getUserDetails() !== undefined &&
             Auth.getUserDetails() !== null &&
@@ -84,15 +65,17 @@ function SingleProduct(props) {
         ) {
             props
                 .postCart(
-                    state.id || props.location.pathname.split("/").slice(-1)[0]
+                    state.id || props.location.pathname.split("/").slice(-1)[0],
+                    false,
+                    count
                 )
                 .then((res) => {
-                    console.log(res);
+                    // console.log(res);
                 });
+
         } else {
             setIsModalShow(true);
         }
-        setIsAddCart(true);
     };
 
     // const productInCart = () => {
@@ -117,32 +100,31 @@ function SingleProduct(props) {
     return (
         <>
             <div className="container single_product_container">
-                {props.product && (
-                    <div>
-                        <div className="row">
-                            <div className="col">
-                                <div className="breadcrumbs d-flex flex-row align-items-center">
-                                    <ul>
-                                        <li>
-                                            <a href="/">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-angle-right" aria-hidden="true"></i>
-                                                {props.product.department}
-                                            </a>
-                                        </li>
-                                        <li className="active">
-                                            <a href="#">
-                                                <i className="fa fa-angle-right" aria-hidden="true"></i>
-                                                {props.product.category}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div className="row">
+                    <div className="col">
+                        <div className="breadcrumbs d-flex flex-row align-items-center">
+                            <ul>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                        {props.product ? props.product.department : <Skeleton />}
+                                    </a>
+                                </li>
+                                <li className="active">
+                                    <a href="#">
+                                        <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                        {props.product ? props.product.category : <Skeleton />}
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-
+                    </div>
+                </div>
+                {props.product ? (
+                    <>
                         <div className="row">
                             <div className="col-lg-7">
                                 <div className="single_product_pics">
@@ -231,33 +213,41 @@ function SingleProduct(props) {
 
                                     <div className="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                                         <span>Quantity:</span>
-                                        {isAddCart &&
-                                            <div className="quantity_selector">
-                                                <span
-                                                    className={
-                                                        state.quantity > 1 ? "minus" : "minus disabled"
-                                                    }
-                                                    onClick={() => onRemoveClicked()}
-                                                >
-                                                    <i className="fa fa-minus" aria-hidden="true"></i>
-                                                </span>
-                                                <span id="quantity_value">{state.quantity}</span>
-                                                <span
-                                                    className="plus"
-                                                    onClick={() => onAddClicked()}
-                                                >
-                                                    <i className="fa fa-plus" aria-hidden="true"></i>
-                                                </span>
-                                            </div>
-                                        }
-                                        {!isAddCart &&
-                                            <div
-                                                className="red_button product-add_to_cart_button"
-                                                onClick={addToBag}
+                                        <div className="quantity_selector">
+                                            <span
+                                                className={
+                                                    count > 1 ? "minus" : "minus disabled"
+                                                }
+                                                onClick={() => {
+                                                    if (count > 0)
+                                                        return setCount(count => count - 1)
+                                                }
+                                                }
                                             >
-                                                <button className='add-cart-btn'>add to cart</button>
-                                            </div>
-                                        }
+                                                <i className="fa fa-minus" aria-hidden="true"></i>
+                                            </span>
+                                            <span id="quantity_value">{count}</span>
+                                            <span
+                                                className="plus"
+                                                onClick={() => {
+                                                    setCount(count => count + 1)
+                                                }
+                                                }
+                                            >
+                                                <i className="fa fa-plus" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <div
+                                            className="red_button product-add_to_cart_button"
+                                            onClick={() => {
+                                                addToBag();
+                                                setCount(1);
+                                                setIsLoad(true);
+                                                setTimeout(() => setIsLoad(false),2000)
+                                            }}
+                                        >
+                                            <button className='add-cart-btn'>add to cart</button>
+                                        </div>
 
                                         {/* <div className="red_cart_button product_add_to_cart_icon">
                                             <a href="#">
@@ -272,9 +262,40 @@ function SingleProduct(props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="row">
+                            <div className="col-lg-7">
+                                <div className="single_product_pics">
+                                    <div className="row">
+                                        <div className="col-lg-3 thumbnails_col order-lg-1 order-2">
+                                            <div className="single_product_thumbnails">
+                                                <Skeleton height={200} />
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-9 image_col order-lg-2 order-1">
+                                            <div className="single_product_image">
+                                                <div
+                                                    className="single_product_image_background">
+                                                    <Skeleton height={500} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-5">
+                                <div className="product_details">
+                                    <div className="product_details_title">
+                                        <h2><Skeleton height={100} /></h2>
+                                        <p><Skeleton height={100} count={2} /></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </>
                 )}
-
                 <LoginRegisterForm
                     show={isModalShow}
                     login={isLoginForm}
@@ -283,6 +304,14 @@ function SingleProduct(props) {
                     onHide={() => showHideModal()}
                 />
             </div>
+            {isLoad && <div class="loading-container">
+                <div className='loadding-bar'>
+                    <div class="Loaderdot"></div>
+                    <div class="Loaderdot"></div>
+                    <div class="Loaderdot"></div>
+                    <div class="Loaderdot"></div>
+                </div>
+            </div>}
         </>
     )
 }

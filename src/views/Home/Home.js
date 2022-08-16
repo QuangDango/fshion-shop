@@ -8,6 +8,9 @@ import Benefit from "../../components/Benefit";
 import Advertisement from "../../components/Advertisement";
 import LoginRegisterForm from "../../components/LoginRegisterForm";
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 function Home(props) {
 
     const { products, departments } = props;
@@ -18,7 +21,7 @@ function Home(props) {
         if (!props.products) {
             props.getAllProducts();
         }
-        window.scrollTo({ top: 0});
+        window.scrollTo({ top: 0 });
     }, [])
 
     const addToBag = params => {
@@ -29,7 +32,7 @@ function Home(props) {
         ) {
             let cart = props.postCart(params);
             cart.then(res => {
-                console.log(res);
+                // console.log(res);
             });
         } else {
             setIsModalShow(true);
@@ -60,7 +63,23 @@ function Home(props) {
                     departments={departments}
                     addToBag={addToBag}
                 />
-            ) : null}
+            ) : (<div className='container'>
+                <Skeleton wrapper={NewArrivals} />
+                <div className='row'>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} count={2} />
+                    </div>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} count={2} />
+                    </div>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} count={2} />
+                    </div>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} count={2} />
+                    </div>
+                </div>
+            </div>)}
             <Benefit />
             <Advertisement />
             {products ? (
@@ -69,7 +88,23 @@ function Home(props) {
                     departments={departments}
                     addToBag={addToBag}
                 />
-            ) : null}
+            ) : (<div className='container'>
+                <Skeleton wrapper={BestSeller} />
+                <div className='row'>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} />
+                    </div>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} />
+                    </div>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} />
+                    </div>
+                    <div className='loading-box col-lg-3 col-sm-6'>
+                        <Skeleton height={300} />
+                    </div>
+                </div>
+            </div>)}
             <LoginRegisterForm
                 show={isModalShow}
                 login={isLoginForm}

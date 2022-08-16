@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 function Filter(props) {
 
     const categoryList = [
-        "Women",
         "Men",
+        "Women",
         "Kids",
         "Accessories",
         "New Arrivals",
         "Collection",
     ]
+
+    const handleDefault = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <>
@@ -22,18 +27,22 @@ function Filter(props) {
                         if (item === props.categoryActive) {
                             return (
                                 <li key={index} className="active">
-                                    <a href="#">
-                                        <span>
-                                            <i className="fa fa-angle-double-right" aria-hidden="true"></i>
-                                        </span>
-                                        {item}
-                                    </a>
+                                    <Link to={`/shops/${item}`}>
+                                        <a>
+                                            <span>
+                                                <i className="fa fa-angle-double-right" aria-hidden="true"></i>
+                                            </span>
+                                            {item}
+                                        </a>
+                                    </Link>
                                 </li>
                             )
                         }
                         return (
                             <li key={index}>
-                                <a href="#">{item}</a>
+                                <Link to={`/shops/${item}`}>
+                                    <a>{item}</a>
+                                </Link>
                             </li>
                         )
                     })}

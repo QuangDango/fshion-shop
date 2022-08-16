@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import SingleProduct from "../../components/Products/SingleProduct";
 import Auth from "../../modules/Auth";
@@ -41,7 +43,7 @@ function Category(props) {
         ) {
             let cart = props.postCart(params);
             cart.then(res => {
-                console.log(res);
+                // console.log(res);
             });
         } else {
             setIsModalShow(true);
@@ -68,7 +70,7 @@ function Category(props) {
                         </div>
 
                         <div className="sidebar">
-                            <Filter applyFilters={applyFilters} categoryActive = {props.match.url.split("/").slice(-1)[0]} />
+                            <Filter applyFilters={applyFilters} categoryActive={props.match.url.split("/").slice(-1)[0]} />
                         </div>
                         <div className="main_content">
                             <div className="products_iso">
@@ -146,8 +148,8 @@ function Category(props) {
                                 </div>
 
                                 <div className="row">
-                                    {products &&
-                                        products.filter((item, index) => {
+                                    {products ?
+                                        (products.filter((item, index) => {
 
                                             return item.department == props.match.url.split("/").slice(-1)[0];
                                         }).map((item, index) => {
@@ -163,7 +165,22 @@ function Category(props) {
                                                     />
                                                 </div>
                                             );
-                                        })}
+                                        })) :
+                                        (<>
+                                            <div className='loading-box col-lg-3 col-sm-6'>
+                                                <Skeleton height={300} count={2} />
+                                            </div>
+                                            <div className='loading-box col-lg-3 col-sm-6'>
+                                                <Skeleton height={300} count={2} />
+                                            </div>
+                                            <div className='loading-box col-lg-3 col-sm-6'>
+                                                <Skeleton height={300} count={2} />
+                                            </div>
+                                            <div className='loading-box col-lg-3 col-sm-6'>
+                                                <Skeleton height={300} count={2} />
+                                            </div>
+                                        </>)
+                                    }
                                 </div>
                                 <div className="product_sorting_container product_sorting_container_bottom clearfix">
                                     <ul className="product_sorting">

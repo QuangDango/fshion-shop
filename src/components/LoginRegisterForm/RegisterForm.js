@@ -30,7 +30,7 @@ function RegisterForm(props) {
         props
             .userRegister(name, email, password, password)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 props.loginClicked();
                 setLoading(false);
             })
@@ -103,7 +103,10 @@ function RegisterForm(props) {
                         cursor: "pointer"
                     }}
                 >
-                    Already have an account ? Please login.
+                    Already have an account ? Please
+                    <span className='login-text'>
+                        login.
+                    </span>
                 </div>
             </div>
         </>

@@ -26,7 +26,7 @@ export const getCartByUserId = () => dispatch => {
     });
 };
 
-export const postCart = (productId, increase, decrease) => dispatch => {
+export const postCart = (productId, decrease, qty = 1) => dispatch => {
   let userId = Auth.getUserId();
   dispatch({
     type: POST_CART_BEGIN
@@ -37,8 +37,8 @@ export const postCart = (productId, increase, decrease) => dispatch => {
     data: {
       userId,
       productId,
-      increase,
-      decrease
+      decrease,
+      qty
     }
   })
     .then(res => {

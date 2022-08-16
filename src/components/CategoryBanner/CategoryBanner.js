@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import Banner1 from "../../assets/images/banner_1.jpg";
 import Banner2 from "../../assets/images/banner_2.jpg";
@@ -19,7 +20,7 @@ function CategoryBanner() {
                                 data-aos="fade-right"
                             >
                                 <div className="banner_category">
-                                    <a href="/shops/Women/Basics">women's</a>
+                                    <Link to="/shops/Women">women's</Link>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +33,7 @@ function CategoryBanner() {
                                 data-aos="fade-up"
                             >
                                 <div className="banner_category">
-                                    <a href="/shops/accessories">accessories's</a>
+                                    <Link to="/">accessories's</Link>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +46,7 @@ function CategoryBanner() {
                                 data-aos="fade-left"
                             >
                                 <div className="banner_category">
-                                    <a href="/shops/Men">men's</a>
+                                    <Link to="/shops/Men">men's</Link>
                                 </div>
                             </div>
                         </div>
