@@ -10,7 +10,7 @@ import BaseLayout from "../layouts/BaseLayout";
 
 var routes = [
   {
-    path: "/",
+    path: "/fshion-shop",
     exact: true,
     layout: BaseLayout,
     component: Home,
